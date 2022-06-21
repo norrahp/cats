@@ -40,8 +40,6 @@ object Print extends App {
     }
   }
 
-  val c = Cat("Peggy", 1, "white")
-
   object PrintableSyntax {
 
     implicit class PrintableOps[A](value: A) {
@@ -53,10 +51,26 @@ object Print extends App {
     }
   }
 
-  Printable.print(c)
+  val cat = Cat("Peggy", 1, "white")
 
+  Printable.print(cat)
   import PrintableSyntax._
   // or with a nice syntax
-  c.print
+  cat.print
+
+  // Ex 1.4.6
+  import cats.Show
+  import cats.instances.int._
+  import cats.instances.string._
+  import cats.syntax.show._
+
+  implicit val showCat: Show[Cat] = (c: Cat) => {
+    val name = c.name.show
+    val age = c.age.show
+    val color = c.color.show
+    s"$name is a $age year-old $color cat."
+  }
+
+  println(cat.show)
 
 }
