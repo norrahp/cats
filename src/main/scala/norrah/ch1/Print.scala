@@ -80,8 +80,8 @@ object Print extends App {
   implicit val catEq: Eq[Cat] =
     Eq.instance[Cat] { (cat1, cat2) =>
       (cat1.name === cat2.name) &&
-        (cat1.age === cat2.age) &&
-        (cat1.color === cat2.color)
+      (cat1.age === cat2.age) &&
+      (cat1.color === cat2.color)
     }
 
   val cat1 = Cat("Garfield", 38, "orange and black")
